@@ -26,27 +26,32 @@
            
         }
         button {
-      background-color: #016704; /* Green */
-      color: white;
-      padding: 12px 24px;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-      margin-top: 10px;
-      border-radius: 5px;
-    }
+        background-color: #016704; /* Green */
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+        border-radius: 5px;
+        }
 
-    button:hover {
-      background-color: #45a049; /* Darker green */
-    }
-    @media(max-width="600px"){
-        img{
-            width: 90%;
+        button:hover {
+        background-color: #45a049; /* Darker green */
         }
-        button{
-            width: 100%;
+        table {
+            color: black;
+            
         }
-    }
+        @media(max-width="600px"){
+            img{
+                width: 90%;
+            }
+            button{
+                width: 100%;
+            
+            }
+        }
     </style>
 </head>
 <body>
@@ -54,6 +59,7 @@
     <img src="Candy_in_Damascus.jpg" alt="candy img">
     <p>Best candies delivered fast!</p>
     <button onclick="ordercanddy()">Order Now</button>
+    <table border="1">
     <tr>
         <th>Name </th>
         <th>Age</th>
@@ -62,6 +68,66 @@
         <th>Shashank</th>
         <th>25</th>
     </tr>
+    </table>
+    <h2>Login Form</h2>
+    <form onsubmit="addToTable(event)">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+        <label for="date">Select Date:</label>
+        <input type="date" id="date" required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <h2>Submitted Data</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody id="dataTable">
+            <!-- Data will be added here dynamically -->
+        </tbody>
+    </table>
+
+    <script>
+        function addToTable(event) {
+            event.preventDefault(); // Prevents form from refreshing the page
+
+            // Get user input values
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let date = document.getElementById("date").value;
+
+            // Select the table body
+            let table = document.getElementById("dataTable");
+
+            // Insert a new row
+            let newRow = table.insertRow();
+
+            // Insert cells and add values
+            let cell1 = newRow.insertCell(0);
+            let cell2 = newRow.insertCell(1);
+            let cell3 = newRow.insertCell(2);
+
+            cell1.innerHTML = email;
+            cell2.innerHTML = password; // (For security, avoid storing passwords like this!)
+            cell3.innerHTML = date;
+
+            // Clear input fields after submission
+            document.getElementById("email").value = "";
+            document.getElementById("password").value = "";
+            document.getElementById("date").value = "";
+        }
+    </script>
+ 
 <script>
     function ordercanddy(){
         alert("Your candy is on the way! 🍬")
